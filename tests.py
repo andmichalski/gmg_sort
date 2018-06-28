@@ -42,3 +42,16 @@ class TestsOnFiles(unittest.TestCase):
         SplitAscFiles.create_folders(self.split, maps_id_list)
         SplitAscFiles.move_files(self.split, maps_id_list)
         self.assertTrue(os.path.exists(os.getcwd() + "/N-34-0/N-34-0-0.asc"))
+
+    def test_similar_filenames_should_be_in_diffrent_folders(self):
+        maps_id_list = ['N-34-3', 'N-34-30']
+        f = open("N-34-3-1.asc", "w+")
+        f.close()
+        f = open("N-34-30-1.asc", "w+")
+        f.close()
+        SplitAscFiles.create_folders(self.split, maps_id_list)
+        SplitAscFiles.move_files(self.split, maps_id_list)
+        self.assertTrue(os.path.exists(os.getcwd() + "/N-34-3/N-34-3-1.asc"))
+        self.assertTrue(os.path.exists(os.getcwd() + "/N-34-30/N-34-30-1.asc"))
+        shutil.rmtree(os.getcwd() + "/N-34-3")
+        shutil.rmtree(os.getcwd() + "/N-34-30")

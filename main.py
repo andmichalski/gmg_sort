@@ -19,7 +19,7 @@ class SplitAscFiles:
 
     def move_files(self, list_maps_ids):
         for map in list_maps_ids:
-            subprocess.call("move {0}* {0}".format(map), shell=True)
+            subprocess.call("move {0}-* {0}".format(map), shell=True)
 
 
 if __name__ == "__main__":
